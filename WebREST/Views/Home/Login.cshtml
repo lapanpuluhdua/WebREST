@@ -1,0 +1,29 @@
+﻿<h2>Login</h2>
+
+<div>
+    <h2>Login</h2>
+    <input type="text" id="userEmail" size="35" />
+    <input type="text" id="userPassword" size="35" />
+    <input type="button" value="Login" onclick="login();" />
+    <p id="user" />
+</div>
+
+
+@section scripts{
+<script type="text/javascript">
+
+    function login() {
+        var id = '*' + String($('#userEmail').val()) + '~' + String($('#userPassword').val());
+        var res = id.replace(/\./g, "DOT");
+        $('#contacts').text("");
+        $.getJSON(uri + '/' + res)
+            .done(function (item) {
+                $('#user').text('Success');
+            })
+            .fail(function (jqXHR, textStatus, err) {
+                $('#user').text('Not Success');
+            });
+    }
+     
+</script>
+}
