@@ -94,7 +94,7 @@ $('#newContact').click(function () {
 var uri = '/api/User';
 
 function Edit(idp) {
-    var id = '!' + idp;
+    var id = 'edit|' + idp;
     $.getJSON(uri + '/' + id)
         .done(function (item) {
             document.getElementById("id").value = item.Id;
@@ -112,7 +112,7 @@ function Edit(idp) {
 
 
 function find() {
-    var id = '|' + String($('#userId').val());
+    var id = 'find|' + String($('#userId').val());
     //var res = id.replace(".", "DOT");
     //var res2 = res.replace(".", "DOT");
     var res = id.replace(/\./g, "DOT");
@@ -135,7 +135,7 @@ function find() {
 
 function deleteName() {
     $('#contacts').text("");
-    var email = String($('#userName').val());
+    var email = 'delete|' + String($('#userName').val());
     //var res = email.replace(".", "DOT");
     //var res2 = res.replace(".", "DOT");
     var res = email.replace(/\./g, "DOT");

@@ -44,7 +44,9 @@ D:\task\WebREST\WebREST\bin\MySql.Web.dll
 D:\task\WebREST\WebREST\bin\Newtonsoft.Json.dll
 D:\task\WebREST\WebREST\bin\Owin.dll
 D:\task\WebREST\WebREST\bin\System.Net.Http.Formatting.dll
+D:\task\WebREST\WebREST\bin\System.Web.Cors.dll
 D:\task\WebREST\WebREST\bin\System.Web.Helpers.dll
+D:\task\WebREST\WebREST\bin\System.Web.Http.Cors.dll
 D:\task\WebREST\WebREST\bin\System.Web.Http.dll
 D:\task\WebREST\WebREST\bin\System.Web.Http.Owin.dll
 D:\task\WebREST\WebREST\bin\System.Web.Http.WebHost.dll
@@ -63,10 +65,11 @@ D:\task\WebREST\WebREST\bin\Microsoft.ApplicationInsights.xml
 D:\task\WebREST\WebREST\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\task\WebREST\WebREST\bin\MySql.Data.xml
 D:\task\WebREST\WebREST\bin\MySql.Web.xml
-D:\task\WebREST\WebREST\bin\Newtonsoft.Json.xml
 D:\task\WebREST\WebREST\bin\System.Net.Http.Formatting.xml
-D:\task\WebREST\WebREST\bin\System.Web.Helpers.xml
 D:\task\WebREST\WebREST\bin\System.Web.Http.xml
+D:\task\WebREST\WebREST\bin\System.Web.Http.Cors.xml
+D:\task\WebREST\WebREST\bin\Newtonsoft.Json.xml
+D:\task\WebREST\WebREST\bin\System.Web.Helpers.xml
 D:\task\WebREST\WebREST\bin\System.Web.Http.WebHost.xml
 D:\task\WebREST\WebREST\bin\System.Web.Mvc.xml
 D:\task\WebREST\WebREST\bin\System.Web.Optimization.xml
@@ -90,6 +93,6 @@ D:\task\WebREST\WebREST\bin\Microsoft.Owin.Security.Google.xml
 D:\task\WebREST\WebREST\bin\Microsoft.Owin.Security.Twitter.xml
 D:\task\WebREST\WebREST\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\task\WebREST\WebREST\bin\System.Web.Http.Owin.xml
-D:\task\WebREST\WebREST\obj\Debug\WebREST.csprojResolveAssemblyReference.cache
 D:\task\WebREST\WebREST\obj\Debug\WebREST.dll
 D:\task\WebREST\WebREST\obj\Debug\WebREST.pdb
+D:\task\WebREST\WebREST\obj\Debug\WebREST.csprojResolveAssemblyReference.cache

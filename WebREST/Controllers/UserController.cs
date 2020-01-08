@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using WebREST.Models;
 using WebREST.Services;
 
 namespace WebREST.Controllers
 {
+    //[EnableCors(origins: "http://localhost:53968", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
         private ContactRepository contactRepository;
@@ -54,48 +56,55 @@ namespace WebREST.Controllers
             {
                 string[] result = new string[2];
                 result = id.Split('|');
-                string parse = result[1].Replace("DOT", ".");
-                var product = contactRepository.GetAllContacts().FirstOrDefault((p) => p.Email == parse);
-                if (product == null)
+                if (result[0].Equals("edit"))
                 {
-                    return NotFound();
+                    var product = contactRepository.GetAllContacts().FirstOrDefault((p) => p.Id == Convert.ToInt32(result[1]));
+                    if (product == null)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(product);
                 }
-                return Ok(product);
-            }
-            else if (id.ToLower().IndexOf("!") >= 0)
-            {
-                string[] result = new string[2];
-                result = id.Split('!');
-                var product = contactRepository.GetAllContacts().FirstOrDefault((p) => p.Id == Convert.ToInt32(result[1]));
-                if (product == null)
+                else if (result[0].Equals("find"))
                 {
-                    return NotFound();
+                    string parse = result[1].Replace("DOT", ".");
+                    var product = contactRepository.GetAllContacts().FirstOrDefault((p) => p.Email == parse);
+                    if (product == null)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(product);
                 }
-                return Ok(product);
-            }
-            else if (id.ToLower().IndexOf("*") >= 0)
-            {
-                string[] result = new string[2];
-                result = id.Split('!');
-                string[] result2 = new string[2];
-                result2 = result[1].Split('~');
-                string parse = result2[0].Replace("DOT", ".");
-                var product = contactRepository.LoginCheck(parse, result2[1]);
-                if (!product)
+                else if (result[0].Equals("delete"))
                 {
-                    return NotFound();
+                    string parse = result[1].Replace("DOT", ".");
+                    var product = contactRepository.DeleteContacts(parse);
+                    if (!product)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(product);
                 }
-                return Ok(product);
+                else if (result[0].Equals("login"))
+                {
+                    string[] login = new string[2];
+                    login = result[1].Split('^');
+                    string email = login[0].Replace("DOT", ".");
+                    string password = login[1];
+                    var product = contactRepository.LoginCheck(email, password);
+                    if (!product)
+                    {
+                        return NotFound();
+                    }
+                    return Ok(product);
+                }
+
+                return Ok();
             }
+            //else if (id.ToLower().IndexOf("*") >= 0)
             else
             {
-                string parse = id.Replace("DOT", ".");
-                var product = contactRepository.DeleteContacts(parse);
-                if (!product)
-                {
-                    return NotFound();
-                }
-                return Ok(product);
+                return NotFound();
             }
         }
 

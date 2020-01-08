@@ -132,16 +132,7 @@ namespace WebREST.Services
             var con = new MySqlConnection(cs);
             con.Open();
             
-            var stm = "";
-            if (userContact.Password == null)
-            {
-                stm = "UPDATE users set emailAddress ='" + userContact.Email + "',username = '" + userContact.Name + "',updateDate = " + DateTime.Today.ToString("yyyyMMddHHmmss") + " where id=" + userContact.Id;
-            }
-            else
-            {
-                string pswd = GetHashString(userContact.Password);
-                stm = "UPDATE users set emailAddress ='" + userContact.Email + "',username = '" + userContact.Name + "',password = '" + pswd + "',updateDate = " + DateTime.Today.ToString("yyyyMMddHHmmss") + " where id=" + userContact.Id;
-            }
+            var stm = "UPDATE users set emailAddress ='" + userContact.Email + "',updateDate = " + DateTime.Today.ToString("yyyyMMddHHmmss") + " where id=" + userContact.Id;
             
             var cmd = new MySqlCommand(stm, con);
             cmd.ExecuteNonQuery();
@@ -264,7 +255,8 @@ namespace WebREST.Services
             {
                 try
                 {
-                    var currentData = ((List<Contact>)ctx.Cache[CacheKey]).ToList();
+                    //var currentData = ((List<Contact>)ctx.Cache[CacheKey]).ToList();
+                    var currentData = ConnectDB();
 
                     foreach (Contact item in currentData)
                     {

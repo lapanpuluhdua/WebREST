@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.Cors;
 
 namespace WebREST
 {
@@ -17,6 +18,9 @@ namespace WebREST
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
+            EnableCrossSiteRequests(config);
+            //config.EnableCors();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -26,6 +30,15 @@ namespace WebREST
                 defaults: new { id = RouteParameter.Optional }
             );
             
+        }
+
+        private static void EnableCrossSiteRequests(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute(
+                origins: "*",
+                headers: "*",
+                methods: "*");
+            config.EnableCors(cors);
         }
     }
 }
