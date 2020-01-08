@@ -58,7 +58,8 @@ namespace WebREST.Controllers
                 result = id.Split('|');
                 if (result[0].Equals("edit"))
                 {
-                    var product = contactRepository.GetAllContacts().FirstOrDefault((p) => p.Id == Convert.ToInt32(result[1]));
+                    string parse = result[1].Replace("DOT", ".");
+                    var product = contactRepository.GetAllContacts().FirstOrDefault((p) => p.Email == parse);
                     if (product == null)
                     {
                         return NotFound();

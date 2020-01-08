@@ -95,4 +95,3 @@ D:\task\WebREST\WebREST\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\task\WebREST\WebREST\bin\System.Web.Http.Owin.xml
 D:\task\WebREST\WebREST\obj\Debug\WebREST.dll
 D:\task\WebREST\WebREST\obj\Debug\WebREST.pdb
-D:\task\WebREST\WebREST\obj\Debug\WebREST.csprojResolveAssemblyReference.cache

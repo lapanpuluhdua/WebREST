@@ -293,7 +293,7 @@ namespace WebREST.Services
 
                     foreach (Contact user in currentData)
                     {
-                        if (user.Id.Equals(contact.Id))
+                        if (user.Email.Equals(contact.Email))
                         {
                             ctx.Cache[CacheKey] = UpdateDB(contact);
                             return true;
