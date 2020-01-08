@@ -93,3 +93,6 @@ D:\task\WebREST\WebREST\bin\System.Web.Http.Owin.xml
 D:\task\WebREST\WebREST\obj\Release\WebREST.csprojResolveAssemblyReference.cache
 D:\task\WebREST\WebREST\obj\Release\WebREST.dll
 D:\task\WebREST\WebREST\obj\Release\WebREST.pdb
+D:\task\WebREST\WebREST\bin\System.Web.Cors.dll
+D:\task\WebREST\WebREST\bin\System.Web.Http.Cors.dll
+D:\task\WebREST\WebREST\bin\System.Web.Http.Cors.xml

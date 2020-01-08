@@ -131,8 +131,9 @@ namespace WebREST.Services
             List<Contact> users = new List<Contact>();
             var con = new MySqlConnection(cs);
             con.Open();
-            
-            var stm = "UPDATE users set emailAddress ='" + userContact.Email + "',updateDate = " + DateTime.Today.ToString("yyyyMMddHHmmss") + " where id=" + userContact.Id;
+
+            string pswd = GetHashString(userContact.Password);
+            var stm = "UPDATE users set password ='" + pswd + "',updateDate = " + DateTime.Today.ToString("yyyyMMddHHmmss") + " where id=" + userContact.Id;
             
             var cmd = new MySqlCommand(stm, con);
             cmd.ExecuteNonQuery();

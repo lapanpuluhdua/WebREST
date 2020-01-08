@@ -24,15 +24,15 @@
 </form>
 
 <div>
-    <h2>Search by email</h2>
+    <h2>Search by Email</h2>
     <input type="text" id="userId" size="35" />
     <input type="button" value="Search" onclick="find();" />
     <p id="user" />
 </div>
 
 <div>
-    <h2>Delete by Name</h2>
-    <input type="text" id="userName" size="15" />
+    <h2>Delete by Email</h2>
+    <input type="text" id="userName" size="35" />
     <input type="button" value="Delete" onclick="deleteName();" />
     <p id="userNameId" />
 </div>
@@ -46,9 +46,15 @@ $(function()
             $(contactsJsonPayload).each(function(i, item)
             {
                 //$('#contacts').append('<li>Name = ' + item.Name + ' || ID = '+item.Id+'</li>');
-                $('#contacts').append('<li><input type="text" name="Name" value=' + item.Name + ' id=' + item.Id + '/><input type="button" value="Edit" onclick="Edit(' + item.Id + ');" /></li>');
+                $('#contacts').append('<li><input type="text" name="Name" value="' + item.Name +'"  id=' + item.Id + '/><input type="button" value="Edit" onclick="Edit(' + item.Id + ');" /></li>');
             });
         });
+        document.getElementById("id").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("userId").value = "";
+        document.getElementById("userName").value = "";
 });
 
 $('#saveContact').click(function () {
@@ -60,7 +66,7 @@ $('#saveContact').click(function () {
               $.getJSON('/api/User', function (contactsJsonPayload) {
                   $(contactsJsonPayload).each(function (i, item) {
                       //$('#contacts').append('<li>Name = ' + item.Name + ' || ID = '+item.Id+'</li>');
-                      $('#contacts').append('<li><input type="text" name="Name" value=' + item.Name + ' id=' + item.Id + '/><input type="button" value="Edit" onclick="Edit(' + item.Id + ');" /></li>');
+                      $('#contacts').append('<li><input type="text" name="Name" value="' + item.Name + '" id=' + item.Id + '/><input type="button" value="Edit" onclick="Edit(' + item.Id + ');" /></li>');
                   });
               })
               //$('#contacts').append('<li>Name = ' + value.Name + ' || ID = ' + value.Id + '</li>');
@@ -68,9 +74,12 @@ $('#saveContact').click(function () {
           },
           "json"
     );
+    document.getElementById("id").value = "";
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
+    document.getElementById("userId").value = "";
+    document.getElementById("userName").value = "";
 });
 
 $('#newContact').click(function () {
@@ -78,12 +87,14 @@ $('#newContact').click(function () {
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
+    document.getElementById("userId").value = "";
+    document.getElementById("userName").value = "";
 });
 
 var uri = '/api/User';
 
 function Edit(idp) {
-    var id = '!' + idp;
+    var id = 'edit|' + idp;
     $.getJSON(uri + '/' + id)
         .done(function (item) {
             document.getElementById("id").value = item.Id;
@@ -101,37 +112,51 @@ function Edit(idp) {
 
 
 function find() {
-    var id = '|' + String($('#userId').val());
+    var id = 'find|' + String($('#userId').val());
     //var res = id.replace(".", "DOT");
     //var res2 = res.replace(".", "DOT");
     var res = id.replace(/\./g, "DOT");
     $('#contacts').text("");
     $.getJSON(uri + '/' + res)
         .done(function (item) {
-            $('#contacts').append('<li><input type="text" name="Name" value=' + item.Name + ' id=' + item.Id + '/><input type="button" value="Edit" onclick="Edit(' + item.Id + ');" /></li>');
+            $('#contacts').append('<li><input type="text" name="Name" value="' + item.Name + '" id=' + item.Id + '/><input type="button" value="Edit" onclick="Edit(' + item.Id + ');" /></li>');
         })
         .fail(function (jqXHR, textStatus, err) {
             $('#user').text('Error: ' + err);
         });
+
+    document.getElementById("id").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("userId").value = "";
+    document.getElementById("userName").value = "";
 }
 
 function deleteName() {
     $('#contacts').text("");
-    var email = String($('#userName').val());
+    var email = 'delete|' + String($('#userName').val());
     //var res = email.replace(".", "DOT");
     //var res2 = res.replace(".", "DOT");
-    var res = id.replace(/\./g, "DOT");
+    var res = email.replace(/\./g, "DOT");
     $.getJSON(uri + '/' + res)
         .done(function (item) {
             $.getJSON('/api/User', function (contactsJsonPayload) {
                 $(contactsJsonPayload).each(function (i, item) {
-                    $('#contacts').append('<li><input type="text" name="Name" value=' + item.Name + ' id=' + item.Id + '/><input type="button" value="Edit" onclick="Edit(' + item.Id + ');" /></li>');
+                    $('#contacts').append('<li><input type="text" name="Name" value="' + item.Name + '" id=' + item.Id + '/><input type="button" value="Edit" onclick="Edit(' + item.Id + ');" /></li>');
                 });
             });
         })
         .fail(function (jqXHR, textStatus, err) {
             $('#userNameId').text('Error: ' + err);
         });
+
+    document.getElementById("id").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("userId").value = "";
+    document.getElementById("userName").value = "";
 }
     </script>
 }

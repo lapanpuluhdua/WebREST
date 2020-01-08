@@ -67,7 +67,16 @@ namespace WebREST.Controllers
                 }
                 else if (result[0].Equals("find"))
                 {
-                    string parse = result[1].Replace("DOT", ".");
+                    string parse = "";
+                    if (result[1].IndexOf("DOT") >= 0)
+                    {
+                        parse = result[1].Replace("DOT", ".");
+                    }
+                    else
+                    {
+                        parse = result[1];
+                    }
+                    
                     var product = contactRepository.GetAllContacts().FirstOrDefault((p) => p.Email == parse);
                     if (product == null)
                     {
@@ -77,7 +86,15 @@ namespace WebREST.Controllers
                 }
                 else if (result[0].Equals("delete"))
                 {
-                    string parse = result[1].Replace("DOT", ".");
+                    string parse = "";
+                    if (result[1].IndexOf("DOT") >= 0)
+                    {
+                        parse = result[1].Replace("DOT", ".");
+                    }
+                    else
+                    {
+                        parse = result[1];
+                    }
                     var product = contactRepository.DeleteContacts(parse);
                     if (!product)
                     {
@@ -89,7 +106,16 @@ namespace WebREST.Controllers
                 {
                     string[] login = new string[2];
                     login = result[1].Split('^');
-                    string email = login[0].Replace("DOT", ".");
+                    string email = "";
+                    if (login[0].IndexOf("DOT") >= 0)
+                    {
+                        email = login[0].Replace("DOT", ".");
+                    }
+                    else
+                    {
+                        email = login[0];
+                    }
+                    
                     string password = login[1];
                     var product = contactRepository.LoginCheck(email, password);
                     if (!product)
